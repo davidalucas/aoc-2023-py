@@ -15,8 +15,18 @@ def test_parse_cal_value_improved_returns_expected():
 
 
 def test_sum_all_cal_values_works_with_example_data():
-    assert sum_all_cal_values("data/day_1/example_1.txt") == 142
+    assert sum_all_cal_values("data/day_1/example_1.txt", parse_cal_value) == 142
 
 
 def test_sum_all_cal_values_works_with_real_data():
-    assert sum_all_cal_values("data/day_1/data.txt") == 55477
+    assert sum_all_cal_values("data/day_1/data.txt", parse_cal_value) == 55477
+
+
+def test_sum_all_cal_values_improved_works_with_example_data():
+    assert (
+        sum_all_cal_values("data/day_1/example_2.txt", parse_cal_value_improved) == 281
+    )
+
+
+def test_sum_all_cal_values_improved_works_with_real_data():
+    assert sum_all_cal_values("data/day_1/data.txt", parse_cal_value_improved) == 54431

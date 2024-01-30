@@ -1,3 +1,5 @@
+from typing import Callable
+
 nums: dict[str, int] = {
     "one": 1,
     "two": 2,
@@ -66,10 +68,10 @@ def parse_cal_value_improved(data: str) -> int:
     return first * 10 + second
 
 
-def sum_all_cal_values(path: str) -> int:
+def sum_all_cal_values(path: str, line_parser: Callable[[str], int]) -> int:
     sum = 0
     with open(path, "r") as file:
         for line in file:
-            sum += parse_cal_value(line)
+            sum += line_parser(line)
 
     return sum
