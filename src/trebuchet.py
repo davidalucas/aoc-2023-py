@@ -13,3 +13,12 @@ def parse_cal_value(data: str) -> int:
             break
 
     return first * 10 + second
+
+
+def sum_all_cal_values(path: str) -> int:
+    sum = 0
+    with open(path, "r") as file:
+        for line in file:
+            sum += parse_cal_value(line)
+
+    return sum
