@@ -1,4 +1,4 @@
-from src.cube_game import CubeGame
+from src.cube_game import CubeGame, sum_possible_games
 from assertpy import assert_that
 
 
@@ -32,3 +32,15 @@ def test_is_valid_returns_true_when_expected():
     valid_dict = {"red": 12, "green": 13, "blue": 14}
 
     assert_that(cube_game.is_valid(valid_dict)).is_true()
+
+
+def test_sum_possible_games_works_for_example_data():
+    limits = {"red": 12, "green": 13, "blue": 14}
+    actual = sum_possible_games("data/day_2/example.txt", limits)
+    assert_that(actual).is_equal_to(8)
+
+
+def test_sum_possible_games_works_for_real_data():
+    limits = {"red": 12, "green": 13, "blue": 14}
+    actual = sum_possible_games("data/day_2/data.txt", limits)
+    assert_that(actual).is_equal_to(2727)

@@ -45,3 +45,25 @@ class CubeGame:
                 if limits[key] < val:
                     return False
         return True
+
+
+def sum_possible_games(path: str, limits: dict[str, int]) -> int:
+    """
+    Calculates the sum of valid game IDs based on the given path and limits.
+
+    Args:
+        path (str): The path to the file containing game data.
+        limits (dict[str, int]): The limits for validating games.
+
+    Returns:
+        int: The sum of valid game IDs.
+    """
+    sum = 0
+    with open(path, "r") as file:
+        for line in file:
+            line = line.rstrip("\n")
+            game = CubeGame.from_string(line)
+            if game.is_valid(limits):
+                sum += game.id
+
+    return sum
