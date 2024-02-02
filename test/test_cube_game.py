@@ -2,6 +2,19 @@ from src.cube_game import CubeGame, sum_possible_games
 from assertpy import assert_that
 
 
+def test_cubegame_constructor():
+    id: int = 1
+    reveals = [{"red": 4, "blue": 3}, {"red": 1, "green": 2, "blue": 6}, {"green": 2}]
+    min_colors = {"red": 4, "green": 2, "blue": 6}
+
+    game = CubeGame(
+        1, [{"red": 4, "blue": 3}, {"red": 1, "green": 2, "blue": 6}, {"green": 2}]
+    )
+    assert_that(game.id).is_equal_to(id)
+    assert_that(game.reveals).is_equal_to(reveals)
+    assert_that(game.min_colors).is_equal_to(min_colors)
+
+
 def test_from_string_constructs_correctly():
     expected = CubeGame(
         1, [{"red": 4, "blue": 3}, {"red": 1, "green": 2, "blue": 6}, {"green": 2}]

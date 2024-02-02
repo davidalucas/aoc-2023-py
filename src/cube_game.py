@@ -1,13 +1,17 @@
-from typing import List
-
-
 class CubeGame:
-    def __init__(self, id: int, reveals: List[dict[str, int]]):
+    def __init__(self, id: int, reveals: list[dict[str, int]]):
         self.id = id
         self.reveals = reveals
 
+        self.min_colors: dict[str, int] = {"red": 0, "green": 0, "blue": 0}
+
+        for reveal in reveals:
+            for key, val in reveal.items():
+                if self.min_colors[key] < val:
+                    self.min_colors[key] = val
+
     @staticmethod
-    def from_string(data: str):
+    def from_string(data: str) -> "CubeGame":
         """
         Converts a string representation of a CubeGame object into an actual CubeGame object.
 
@@ -20,7 +24,7 @@ class CubeGame:
         game_split = data.split(": ")
         game_id = int(game_split[0].split(" ")[1])
 
-        reveals: List[dict[str, int]] = []
+        reveals: list[dict[str, int]] = []
         for reveals_raw_data in game_split[1].split("; "):
             reveal: dict[str, int] = {}
             for reveal_str in reveals_raw_data.split(", "):
