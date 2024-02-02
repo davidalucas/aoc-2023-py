@@ -1,4 +1,4 @@
-from src.cube_game import CubeGame, sum_possible_games
+from src.cube_game import CubeGame, sum_game_powers, sum_possible_games
 from assertpy import assert_that
 
 
@@ -57,3 +57,13 @@ def test_sum_possible_games_works_for_real_data():
     limits = {"red": 12, "green": 13, "blue": 14}
     actual = sum_possible_games("data/day_2/data.txt", limits)
     assert_that(actual).is_equal_to(2727)
+
+
+def test_sum_game_powers_works_for_example_data():
+    actual = sum_game_powers("data/day_2/example.txt")
+    assert_that(actual).is_equal_to(2286)
+
+
+def test_sum_game_powers_works_for_real_data():
+    actual = sum_game_powers("data/day_2/data.txt")
+    assert_that(actual).is_equal_to(56580)

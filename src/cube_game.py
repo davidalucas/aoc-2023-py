@@ -1,3 +1,7 @@
+from functools import reduce
+from operator import mul
+
+
 class CubeGame:
     def __init__(self, id: int, reveals: list[dict[str, int]]):
         self.id = id
@@ -70,4 +74,25 @@ def sum_possible_games(path: str, limits: dict[str, int]) -> int:
             if game.is_valid(limits):
                 sum += game.id
 
+    return sum
+
+
+def sum_game_powers(path: str) -> int:
+    """
+    Calculates the sum of game powers from a file. The 'power' is the product
+    of the minimum number of each color cube that must be present in a game.
+
+    Args:
+        path (str): The path to the file containing the game data.
+
+    Returns:
+        int: The sum of game powers.
+    """
+    sum = 0
+    with open(path, "r") as file:
+        for line in file:
+            line = line.rstrip("\n")
+            game = CubeGame.from_string(line)
+            vals = game.min_colors.values()
+            sum += reduce(mul, game.min_colors.values())
     return sum
